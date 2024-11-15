@@ -1,3 +1,4 @@
+import { ApiToken } from "../apitokens/types";
 import { WithRequired } from "../types";
 
 export type Dashboard = {
@@ -38,4 +39,14 @@ export type MigrateDashboards = {
 export type BuildDashboards = {
   dashboardType?: DashboardSlug;
   ids?:number[]
+}
+
+export type DashboardWebhookEvents = {
+  create:{
+    dashboard:Dashboard,
+    tokens:ApiToken[]
+  },
+  remove:{
+    dashboard:Dashboard
+  }
 }
