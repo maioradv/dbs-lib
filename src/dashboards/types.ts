@@ -1,43 +1,42 @@
 import { ApiToken } from "../apitokens/types";
+import { DashboardTypeSlug } from "../dashboard-types/types";
 import { WithRequired } from "../types";
 
 export type Dashboard = {
   id: number;
   slug: string;
   active: boolean;
-  applications: DashboardApp[];
+  applications: DashboardAppplication[];
   dashboardTypeId: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export type DashboardApp = {
+export type DashboardAppplication = {
   slug: string;
-  appId: number;
   domain: string;
-}
-
-export enum DashboardSlug {
-  tidelizio = 'tidelizio'
+  appId: number;
+  dnsId: number;
+  parentId?: number;
 }
 
 type PartialDasboard = Partial<Omit<Dashboard,'id'|'createdAt'|'updatedAt'|'dashboardTypeId'|'applications'>>
 
 export type CreateDashboard = PartialDasboard & WithRequired<PartialDasboard,'slug'> & {
-  dashboardType:DashboardSlug,
+  dashboardType:DashboardTypeSlug,
   applications:CreateDashboardApp[]
 }
 export type UpdateDashboard = Partial<Omit<CreateDashboard,'dashboardType'|'slug'|'applications'>>
 
-export type CreateDashboardApp = Omit<DashboardApp,'appId'>
+export type CreateDashboardApp = Omit<DashboardAppplication,'appId'|'parentId'|'dnsId'>
 
 export type MigrateDashboards = {
-  dashboardType?: DashboardSlug;
+  dashboardType?: DashboardTypeSlug;
   ids?:number[]
 }
 
 export type BuildDashboards = {
-  dashboardType?: DashboardSlug;
+  dashboardType?: DashboardTypeSlug;
   ids?:number[]
 }
 

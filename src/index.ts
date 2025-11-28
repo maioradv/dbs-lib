@@ -8,6 +8,7 @@ export * from './types'
 export * from './error'
 export * from './auth/types'
 export * from './dashboards/types'
+export * from './dashboard-types/types'
 export * from './servers/types'
 export * from './credentials/types'
 
