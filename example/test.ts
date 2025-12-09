@@ -1,4 +1,4 @@
-import { DashboardSlug, dbsApiClient } from "../src";
+import { dbsApiClient } from "../src";
 
 async function example() {
   const api = dbsApiClient({
