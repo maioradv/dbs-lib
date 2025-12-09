@@ -8,6 +8,7 @@ import Dashboards from "./dashboards";
 import { AuthError } from "./error";
 import Servers from "./servers";
 import DashboardTypes from "./dashboard-types";
+import Analytics from "./analytics";
 
 export class DbsApiClient implements ClientApiI
 {
@@ -19,6 +20,7 @@ export class DbsApiClient implements ClientApiI
   dashboards:Dashboards;
   servers:Servers;
   dashboardTypes:DashboardTypes;
+  analytics:Analytics;
 
   constructor(protected config: ApiConfigs) {
     this.configApi = validateConfigs(this.config)
@@ -38,6 +40,7 @@ export class DbsApiClient implements ClientApiI
     this.dashboards = new Dashboards(this.client)
     this.servers = new Servers(this.client)
     this.dashboardTypes = new DashboardTypes(this.client)
+    this.analytics = new Analytics(this.client)
   }
 
   _setAccessToken(accessToken:string) {
