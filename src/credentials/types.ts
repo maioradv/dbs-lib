@@ -1,4 +1,4 @@
-import { WithRequired } from "../types";
+import { WithRequired } from "@maioradv/types";
 
 export type Credential = {
   id: number;

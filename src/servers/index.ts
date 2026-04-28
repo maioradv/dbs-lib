@@ -1,4 +1,4 @@
-import { ApiModule } from "../model";
+import { ApiModule } from "@maioradv/client-core";
 import { CreateServer, Server, UpdateServer } from "./types";
 
 export default class Servers extends ApiModule {

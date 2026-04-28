@@ -1,4 +1,4 @@
-import { ApiModule } from "../model";
+import { ApiModule } from "@maioradv/client-core";
 import { Dashboard, CreateDashboard, UpdateDashboard, BuildDashboards, MigrateDashboards } from "./types";
 
 export default class Dashboards extends ApiModule {

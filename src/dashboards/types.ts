@@ -1,6 +1,5 @@
+import { DashboardType, WithRequired } from "@maioradv/types";
 import { ApiToken } from "../apitokens/types";
-import { DashboardTypeSlug } from "../dashboard-types/types";
-import { WithRequired } from "../types";
 
 export type Dashboard = {
   id: number;
@@ -23,7 +22,7 @@ export type DashboardAppplication = {
 type PartialDasboard = Partial<Omit<Dashboard,'id'|'createdAt'|'updatedAt'|'dashboardTypeId'|'applications'>>
 
 export type CreateDashboard = PartialDasboard & WithRequired<PartialDasboard,'slug'> & {
-  dashboardType:DashboardTypeSlug,
+  dashboardType:DashboardType,
   applications:CreateDashboardApp[]
 }
 export type UpdateDashboard = Partial<Omit<CreateDashboard,'dashboardType'|'slug'|'applications'>>
@@ -31,12 +30,12 @@ export type UpdateDashboard = Partial<Omit<CreateDashboard,'dashboardType'|'slug
 export type CreateDashboardApp = Omit<DashboardAppplication,'appId'|'parentId'|'dnsId'>
 
 export type MigrateDashboards = {
-  dashboardType?: DashboardTypeSlug;
+  dashboardType?: DashboardType;
   ids?:number[]
 }
 
 export type BuildDashboards = {
-  dashboardType?: DashboardTypeSlug;
+  dashboardType?: DashboardType;
   ids?:number[]
 }
 

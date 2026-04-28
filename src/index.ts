@@ -4,8 +4,7 @@ import { ApiConfigs } from "./config";
 export { DbsApiClient }
 export type DbsApiConfigs = ApiConfigs
 
-export * from './types'
-export * from './error'
+export * from './api'
 export * from './auth/types'
 export * from './dashboards/types'
 export * from './dashboard-types/types'

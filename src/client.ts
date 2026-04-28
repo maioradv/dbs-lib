@@ -1,20 +1,19 @@
-import axios, { Axios } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { ValidatedApiConfigs, ApiConfigs, validateConfigs } from "./config";
-import { ApiHeader } from "./types";
-import { ClientApiI } from "./model";
+import { ApiHeader } from "./api";
 import Auth from "./auth";
 import { AccessTokenDto } from "./auth/types";
 import Dashboards from "./dashboards";
-import { AuthError } from "./error";
 import Servers from "./servers";
 import DashboardTypes from "./dashboard-types";
 import Analytics from "./analytics";
+import { AuthError, ClientApiI } from "@maioradv/client-core";
 
 export class DbsApiClient implements ClientApiI
 {
   protected SANDBOX_URL = 'http://localhost:3000'
   protected PRODUCTION_URL = 'https://dbs.maior.cloud'
-  protected client:Axios;
+  protected client:AxiosInstance;
   protected configApi:ValidatedApiConfigs;
   authentication:Auth;
   dashboards:Dashboards;
@@ -28,7 +27,7 @@ export class DbsApiClient implements ClientApiI
     this._initModules()
   }
 
-  protected _initClient(): Axios {
+  protected _initClient(): AxiosInstance {
     const client = axios.create()
     client.defaults.baseURL = this.configApi.sandbox ? this.SANDBOX_URL : this.PRODUCTION_URL;
     client.defaults.headers.common['Content-Type'] = 'application/json'
@@ -49,8 +48,16 @@ export class DbsApiClient implements ClientApiI
 
   async auth(): Promise<AccessTokenDto> {
     if(!this.configApi.credentials) throw new AuthError('Missing credentials')
-    const access = await this.authentication.token(this.configApi.credentials.apiToken)
-    this.client.defaults.headers.common[ApiHeader.Authorization] = `${access.token_type} ${access.access_token}`
+    const access = 
+      this.configApi.credentials.apiToken ? await this.authentication.token(this.configApi.credentials.apiToken) : 
+      await this.authentication.jwt(this.configApi.credentials.operator)
+    this._setAccessToken(access.access_token)
+    return access
+  }
+
+  async jwt(accessToken:string): Promise<AccessTokenDto> {
+    const access = await this.authentication.jwt(accessToken)
+    this._setAccessToken(access.access_token)
     return access
   }
 }

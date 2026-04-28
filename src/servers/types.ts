@@ -1,5 +1,5 @@
+import { WithRequired } from "@maioradv/types";
 import { CreateCredential } from "../credentials/types";
-import { WithRequired } from "../types";
 
 export type Server = {
   id: number;

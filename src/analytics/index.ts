@@ -1,4 +1,4 @@
-import { ApiModule } from "../model";
+import { ApiModule } from "@maioradv/client-core";
 import { Heartbeat, OfflineResponse } from "./types";
 
 export default class Analytics extends ApiModule {

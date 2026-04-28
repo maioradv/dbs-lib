@@ -15,10 +15,6 @@ export type DashboardTypeApplication = {
   parentId?: number;
 }
 
-export enum DashboardTypeSlug {
-  tidelizio = 'tidelizio'
-}
-
 export type SetupDashboardType = {
   serverId: number;
 }
