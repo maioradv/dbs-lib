@@ -1,8 +1,8 @@
-export type Heartbeat = {
+export type HeartbeatDto = {
   domain:string
 }
 
-export type OfflineResponse = {
+export type OfflineResponseDto = {
   id:number,
   domain:string,
   heartbeatAt:Date

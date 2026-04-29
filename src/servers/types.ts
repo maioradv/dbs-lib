@@ -1,5 +1,6 @@
 import { WithRequired } from "@maioradv/types";
-import { CreateCredential } from "../credentials/types";
+import { CreateCredentialDto } from "../credentials/types";
+import { QueryParamsDto, Sorting, SortingParamsDto, StringClause, WhereClausesDto } from "@maioradv/client-core";
 
 export type Server = {
   id: number;
@@ -13,8 +14,19 @@ export type Server = {
 
 type PartialServer = Partial<Omit<Server,'id'|'createdAt'|'updatedAt'|'loginCredentialId'|'sshCredentialId'>>
 
-export type CreateServer = PartialServer & WithRequired<PartialServer,'ip'|'name'> & {
-  login?:CreateCredential,
-  ssh?:CreateCredential
+export type CreateServerDto = PartialServer & WithRequired<PartialServer,'ip'|'name'> & {
+  login?:CreateCredentialDto,
+  ssh?:CreateCredentialDto
 }
-export type UpdateServer = Partial<CreateServer>
+export type UpdateServerDto = Partial<CreateServerDto>
+
+export type SortingServerDto = SortingParamsDto<{
+  ip?:Sorting,
+  name?:Sorting
+}>
+
+export type ClausesServerDto = WhereClausesDto<{
+  search?:StringClause,
+}>
+
+export type QueryServerDto = QueryParamsDto<SortingServerDto,ClausesServerDto>

@@ -8,6 +8,7 @@ import Servers from "./servers";
 import DashboardTypes from "./dashboard-types";
 import Analytics from "./analytics";
 import { AuthError, ClientApiI } from "@maioradv/client-core";
+import Services from "./services";
 
 export class DbsApiClient implements ClientApiI
 {
@@ -20,6 +21,7 @@ export class DbsApiClient implements ClientApiI
   servers:Servers;
   dashboardTypes:DashboardTypes;
   analytics:Analytics;
+  services:Services;
 
   constructor(protected config: ApiConfigs) {
     this.configApi = validateConfigs(this.config)
@@ -40,6 +42,7 @@ export class DbsApiClient implements ClientApiI
     this.servers = new Servers(this.client)
     this.dashboardTypes = new DashboardTypes(this.client)
     this.analytics = new Analytics(this.client)
+    this.services = new Services(this.client)
   }
 
   _setAccessToken(accessToken:string) {

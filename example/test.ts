@@ -1,15 +1,12 @@
 import { dbsApiClient } from "../src";
+import credentials from './credentials.json'
 
 async function example() {
   const api = dbsApiClient({
-    sandbox:true,
-    credentials:{
-      apiToken:''
-    }
+    //sandbox:true,
+    credentials
   })
   await api.auth()
-  const res = await api.dashboards.remove(4)
-  console.log(res)
 }
 
 example()

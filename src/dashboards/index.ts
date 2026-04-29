@@ -1,10 +1,14 @@
-import { ApiModule } from "@maioradv/client-core";
-import { Dashboard, CreateDashboard, UpdateDashboard, BuildDashboards, MigrateDashboards } from "./types";
+import { ApiModule, PaginatedDto, queryParams } from "@maioradv/client-core";
+import { Dashboard, CreateDashboardDto, UpdateDashboard, BuildDashboardsDto, MigrateDashboardsDto, QueryDashboardDto, ScriptDashboardsDto } from "./types";
 
 export default class Dashboards extends ApiModule {
-  create(data:CreateDashboard) {
+  create(data:CreateDashboardDto) {
     return this._call<Dashboard>('post','/dashboards',data)
   }
+
+  findAll(args:QueryDashboardDto = {}): Promise<PaginatedDto<Dashboard>> {
+    return this._call('get','/dashboards',queryParams(args))
+  } 
 
   update(id:number,data:UpdateDashboard) {
     return this._call<Dashboard>('patch',`/dashboards/${id}`,data)
@@ -18,11 +22,15 @@ export default class Dashboards extends ApiModule {
     return this._call<boolean>('post',`/dashboards/${id}/install`)
   }
 
-  build(data:BuildDashboards = {}) {
+  build(data:BuildDashboardsDto = {}) {
     return this._call<boolean>('post','/dashboards/build',data)
   }
 
-  migrate(data:MigrateDashboards = {}) {
+  script(data:ScriptDashboardsDto = {}) {
+    return this._call<boolean>('post','/dashboards/script',data)
+  }
+
+  migrate(data:MigrateDashboardsDto = {}) {
     return this._call<boolean>('post','/dashboards/migrate',data)
   }
 }

@@ -1,4 +1,4 @@
-import { WithRequired } from "@maioradv/types";
+import { OmitRequire } from "@maioradv/types";
 
 export type Credential = {
   id: number;
@@ -10,6 +10,4 @@ export type Credential = {
   updatedAt: Date;
 }
 
-type PartialCredential = Partial<Omit<Credential,'id'|'createdAt'|'updatedAt'>>
-
-export type CreateCredential = PartialCredential & WithRequired<PartialCredential,'user'|'password'>
+export type CreateCredentialDto = OmitRequire<Credential,'id'|'createdAt'|'updatedAt','user'|'password'>

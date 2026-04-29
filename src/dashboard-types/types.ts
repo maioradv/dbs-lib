@@ -1,3 +1,5 @@
+import { NumberClause, QueryParamsDto, Sorting, SortingParamsDto, StringClause, WhereClausesDto } from '@maioradv/client-core';
+
 export type DashboardType = {
   id: number;
   slug: string;
@@ -15,6 +17,20 @@ export type DashboardTypeApplication = {
   parentId?: number;
 }
 
-export type SetupDashboardType = {
+export type SetupDashboardTypeDto = {
   serverId: number;
 }
+
+export type SortingDashboardTypeDto = SortingParamsDto<{
+  slug?:Sorting,
+  serverId?:Sorting,
+}>
+
+export type ClausesDashboardTypeDto = WhereClausesDto<{
+  search?:StringClause,
+  slug?:StringClause,
+  serverId?:NumberClause,
+}>
+
+export type QueryDashboardTypeDto = QueryParamsDto<SortingDashboardTypeDto,ClausesDashboardTypeDto>
+
