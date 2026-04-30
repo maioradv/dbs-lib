@@ -27,8 +27,11 @@ export enum Permission {
   write_dashboards = 'write_dashboards',
   read_servers = 'read_servers',
   write_servers = 'write_servers',
-  write_services = 'write_services',
   read_services = 'read_services',
+  write_services = 'write_services',
   read_analytics = 'read_analytics',
-  push_metrics = 'push_metrics'
+  push_metrics = 'push_metrics',
+  read_apitokens = 'read_apitokens',
+  write_apitokens = 'write_apitokens',
+  read_updates = 'read_updates'
 }
