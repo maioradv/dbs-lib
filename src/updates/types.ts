@@ -4,4 +4,6 @@ export type TiDelizioUpdateDto = {
   s3Id:string;
   s3Key:string;
   pnToken:string;
+  observeAppKey:string;
+  observeAppSecret:string;
 }
