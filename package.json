@@ -1,6 +1,6 @@
 {
   "name": "@maioradv/dbs-lib",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "JS lib for Maior DBS Api",
   "repository": "https://github.com/maioradv/maior-dbs-lib.git",
   "author": "Maior ADV Srl",
@@ -16,8 +16,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@maioradv/client-core": "^0.0.4",
-    "@maioradv/types": "^0.0.4"
+    "@maioradv/client-core": "^0.0.8",
+    "@maioradv/types": "^0.0.8"
   },
   "devDependencies": {
     "@types/node": "^24.6.1",

@@ -1,4 +1,4 @@
-import { RestApiModuleI, ApiModule, GraphApiModuleI, queryParams, RemoveGQL, PaginatedDto, PaginatedGQL } from "@maioradv/client-core";
+import { RestApiModuleI, ApiModule, GraphApiModuleI, queryParams, PaginatedDto, PaginatedGQL } from "@maioradv/client-core";
 import { ApiToken, CreateApiTokenDto, QueryApiTokenDto, UpdateApiTokenDto } from "./types";
 
 export default class ApiTokens extends ApiModule implements RestApiModuleI {
